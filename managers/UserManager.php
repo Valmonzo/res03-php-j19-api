@@ -12,7 +12,7 @@ class UserManager extends AbstractManager {
         $users = $query->fetchAll(PDO::FETCH_ASSOC);
         foreach($users as $user)
         {
-            $userToPush = new User($user["id"], $user["username"], $user["firstName"], $user['lastName'], $user['email']);
+            $userToPush = new User($user["id"], $user["username"], $user["first_name"], $user['last_name'], $user['email']);
             $usersTab[] = $userToPush;
         }
 
@@ -30,7 +30,9 @@ class UserManager extends AbstractManager {
         $query->execute($parameters);
         $user = $query->fetch(PDO::FETCH_ASSOC);
 
-        $userToLoad = new User($user['id'], $user['username'], $user['firstName'], $user['lastName'], $user['email']);
+        $userToLoad = new User($user['id'], $user['username'], $user['first_name'], $user['last_name'], $user['email']);
+
+        return $userToLoad;
     }
 
     public function createUser(User $user) : User
@@ -55,7 +57,7 @@ class UserManager extends AbstractManager {
             ];
         $query->execute($parameters);
         $userSelected = $query->fetch(PDO::FETCH_ASSOC);
-        $userToLoad = new User($userSelected['id'], $userSelected['username'], $userSelected['firstName'], $userSelected['lastName'], $userSelected['email']);
+        $userToLoad = new User($userSelected['id'], $userSelected['username'], $userSelected['first_name'], $userSelected['last_name'], $userSelected['email']);
 
         return $userToLoad;
 
