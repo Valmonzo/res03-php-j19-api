@@ -21,6 +21,6 @@ catch(Exception $e)
 {
     if($e->getCode() === 404)
     {
-        require "./templates/404.phtml";
+
     }
 }
